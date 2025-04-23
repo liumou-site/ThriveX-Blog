@@ -16,7 +16,7 @@ RUN npm install
 # 复制所有文件到工作目录
 COPY . .
 
-RUN rm -rf .github .gitignore .git .gitattributes .next ./node_modules ./images *.md ./Dockerfile*
+RUN rm -rf .github .gitignore .git .gitattributes ./node_modules ./images *.md ./Dockerfile*
 
 # 暴露端口
 EXPOSE 9001
