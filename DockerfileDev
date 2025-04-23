@@ -2,7 +2,7 @@
 FROM registry.cn-hangzhou.aliyuncs.com/liuyi778/node-20-alpine AS builder
 
 # 设置工作目录
-WORKDIR /thrive
+WORKDIR /thrive/blog
 
 # 配置 npm 镜像源
 RUN npm config set registry https://registry.npmmirror.com
