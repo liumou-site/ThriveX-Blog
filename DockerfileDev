@@ -2,7 +2,7 @@
 FROM registry.cn-hangzhou.aliyuncs.com/liuyi778/node-20-alpine AS builder
 
 # 设置工作目录
-WORKDIR /thrive/blog
+WORKDIR /thrive/blog_source
 
 # 配置 npm 镜像源
 RUN npm config set registry https://registry.npmmirror.com
@@ -17,8 +17,11 @@ RUN npm install
 COPY . .
 
 RUN rm -rf .github .gitignore .git .gitattributes ./node_modules ./images *.md ./Dockerfile*
+RUN mv /thrive/blog_source/RunDev.sh /&& chmod +x /RunDev.sh
+
+WORKDIR /thrive/blog
 
 # 暴露端口
 EXPOSE 9001
 
-CMD ["next", "start", "-p", "9001"]
+CMD ["/RunDev.sh"]

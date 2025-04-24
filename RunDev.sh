@@ -1,0 +1,42 @@
+set -e
+# 如果 /thrive/blog下无文件则移动 /thrive/blog_source 目录覆盖
+if [ ! -d "/thrive/blog" ]; then
+    echo "blog目录不存在，开始初始化blog目录"
+    if [ ! -d "/thrive/blog_source"];then
+        echo "/thrive/blog_source目录不存在，请检查"
+        exit 1
+    fi
+    mv /thrive/blog_source/* /thrive/blog
+    if [ $? -ne 0 ]; then
+        echo "blog目录初始化失败"
+        exit 1
+    fi
+    echo "blog目录初始化完成"
+fi
+ls -l /thrive/blog
+if [ ! -d "/thrive/blog/.env" ]; then
+    if [ ! -d "/thrive/blog_source"];then
+        echo "/thrive/blog_source目录不存在，请检查"
+        exit 1
+    fi
+    echo "/thrive/blog/.env 不存在，开始初始化blog目录"
+    rm -rf /thrive/blog
+    mv /thrive/blog_source /thrive/blog
+    if [ $? -ne 0 ]; then
+        echo "blog目录初始化失败"
+        exit 1
+    fi
+    echo "blog目录初始化完成"
+fi
+which npm
+if [ $? -ne 0 ]; then
+    echo "npm不存在m"
+    exit 3
+fi
+cd /thrive/blog
+if [ $? -ne 0 ]; then
+    echo "进入 /thrive/blog 目录失败"
+   exit 4
+fi
+echo "next start -p 9001"
+next start -p 9001
