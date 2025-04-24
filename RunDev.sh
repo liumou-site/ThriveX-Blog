@@ -6,7 +6,7 @@ if [ ! -d "/thrive/blog" ]; then
         echo "/thrive/blog_source目录不存在，请检查"
         exit 1
     fi
-    mv /thrive/blog_source/* /thrive/blog
+    cp -rf /thrive/blog_source/* /thrive/blog
     if [ $? -ne 0 ]; then
         echo "blog目录初始化失败"
         exit 1
@@ -20,8 +20,8 @@ if [ ! -d "/thrive/blog/.env" ]; then
         exit 1
     fi
     echo "/thrive/blog/.env 不存在，开始初始化blog目录"
-    rm -rf /thrive/blog
-    mv /thrive/blog_source /thrive/blog
+    rm -rf /thrive/blog/*
+    cp -rf /thrive/blog_source/* /thrive/blog
     if [ $? -ne 0 ]; then
         echo "blog目录初始化失败"
         exit 1
