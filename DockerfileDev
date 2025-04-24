@@ -17,11 +17,12 @@ COPY . .
 
 # 安装依赖
 RUN npm install > /dev/null&&npm install -g next react react-dom pnpm  sass > /dev/null
+RUN pnpm install @next/swc --save-dev
 RUN next build > /dev/null
 
 
 
-RUN rm -rf .github .gitignore .git .gitattributes ./node_modules ./images *.md ./Dockerfile*
+RUN rm -rf .github .gitignore .git .gitattributes ./images *.md ./Dockerfile*
 
 RUN mv /thrive/blog_source/RunDev.sh /&& chmod +x /RunDev.sh
 
@@ -30,6 +31,6 @@ WORKDIR /thrive/blog
 
 
 # 暴露端口
-EXPOSE 9001
+EXPOSE 3000
 
 CMD ["/RunDev.sh"]

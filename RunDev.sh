@@ -41,12 +41,10 @@ fi
 which next
 if [ $? -ne 0 ]; then
     echo "next命令不存在"
-    echo "npx next start -p 9001"
-    npx next build
-    npx next start -p 9001
+    echo "npx next dev --turbopack"
+    npx next dev --turbopack
 else
-    echo "next start -p 9001"
-    next build
-    next start -p 9001
+    echo "next dev --turbopack"
+    next dev --turbopack
 fi
 
