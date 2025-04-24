@@ -28,15 +28,23 @@ if [ ! -d "/thrive/blog/.env" ]; then
     fi
     echo "blog目录初始化完成"
 fi
-which npm
-if [ $? -ne 0 ]; then
-    echo "npm不存在m"
-    exit 3
-fi
 cd /thrive/blog
 if [ $? -ne 0 ]; then
     echo "进入 /thrive/blog 目录失败"
    exit 4
 fi
-echo "next start -p 9001"
-next start -p 9001
+which npm
+if [ $? -ne 0 ]; then
+    echo "npm命令不存在"
+    exit 3
+fi
+which next
+if [ $? -ne 0 ]; then
+    echo "next命令不存在"
+    echo "npx next start -p 9001"
+    npx next start -p 9001
+else
+    echo "next start -p 9001"
+    next start -p 9001
+fi
+

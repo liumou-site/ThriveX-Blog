@@ -11,7 +11,7 @@ RUN npm config set registry https://registry.npmmirror.com
 COPY package*.json .
 
 # 安装依赖
-RUN npm install
+RUN npm install&&npm install -g next react react-dom
 
 # 复制所有文件到工作目录
 COPY . .
@@ -20,6 +20,8 @@ RUN rm -rf .github .gitignore .git .gitattributes ./node_modules ./images *.md .
 RUN mv /thrive/blog_source/RunDev.sh /&& chmod +x /RunDev.sh
 
 WORKDIR /thrive/blog
+
+
 
 # 暴露端口
 EXPOSE 9001
