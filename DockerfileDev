@@ -5,7 +5,7 @@ FROM registry.cn-hangzhou.aliyuncs.com/liuyi778/node-20-alpine AS builder
 WORKDIR /thrive/blog_source
 
 # 配置 npm 镜像源
-RUN npm config set registry https://registry.npmmirror.com
+#RUN npm config set registry https://registry.npmmirror.com
 
 # 复制 package.json 和 package-lock.json
 COPY package*.json .
@@ -15,6 +15,9 @@ RUN npm install&&npm install -g next react react-dom
 
 # 复制所有文件到工作目录
 COPY . .
+
+RUN next build
+
 
 RUN rm -rf .github .gitignore .git .gitattributes ./node_modules ./images *.md ./Dockerfile*
 RUN mv /thrive/blog_source/RunDev.sh /&& chmod +x /RunDev.sh
