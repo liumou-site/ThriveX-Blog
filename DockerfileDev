@@ -11,7 +11,7 @@ WORKDIR /thrive/blog_source
 COPY package*.json .
 
 # 安装依赖
-RUN npm install&&npm install -g next react react-dom
+RUN npm install&&npm install -g next react react-dom pnpm
 
 # 复制所有文件到工作目录
 COPY . .
